@@ -7,4 +7,9 @@ export AUTOSUGGESTION_ACCEPT_RIGHT_ARROW=1
 zle-line-init() {
     zle autosuggest-start
 }
-zle -N zle-line-init
+
+# only init zsh-autosuggestions when we not in emacs terms, because terms in
+# emacs will not render zsh-autosuggestions gray color correctyly
+if [[ "$INSIDE_EMACS" == "" ]]; then
+  zle -N zle-line-init
+fi;
